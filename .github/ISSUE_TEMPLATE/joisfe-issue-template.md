@@ -8,15 +8,15 @@ assignees: ''
 ---
 
 # Issue: 
-작업 사항 입력
+- 작업 사항 입력
 
-## Description
-설명 작성
+### Description
+- 설명 작성
 <br>
 
-## Todo
-[ ] todo
+### Todo
+- [ ] todo
 <br>
 
-## Etc
-기타사항
+### Etc
+- 기타사항
