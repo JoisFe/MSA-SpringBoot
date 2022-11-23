@@ -1,0 +1,12 @@
+server:
+  port: 18080
+  tomcat:
+    connection-timeout: 30s
+    threads:
+      max: 100
+      min-spare: 100
+    accesslog:
+      enabled: true
+      suffix: log
+      prefix: access_log
+      rename-on-rotate: true
