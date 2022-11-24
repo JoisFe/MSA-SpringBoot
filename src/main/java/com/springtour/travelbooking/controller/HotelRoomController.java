@@ -1,12 +1,14 @@
 package com.springtour.travelbooking.controller;
 
 import com.springtour.travelbooking.domain.HotelRoomType;
+import com.springtour.travelbooking.dto.DeleteResultResponse;
 import com.springtour.travelbooking.dto.HotelRoomResponse;
 import com.springtour.travelbooking.utils.IdGenerator;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,5 +37,12 @@ public class HotelRoomController {
         }
 
         return response;
+    }
+
+    @DeleteMapping(path = "/hotels/{hotelId}/rooms/{roomNumber}")
+    public DeleteResultResponse deleteHotelRoom(@PathVariable Long hotelId, @PathVariable String roomNumber) {
+        System.out.println("Delete Request. hotelId=" + hotelId + ", roomNumber=" + roomNumber);
+
+        return new DeleteResultResponse(Boolean.TRUE, "success");
     }
 }
