@@ -35,7 +35,8 @@ public class HotelRoomResponse {
 
     private final List<Reservation> resrvations;
 
-    private HotelRoomResponse(Long hotelRoomId, String roomNumber, HotelRoomType hotelRoomType, BigDecimal originalPrice) {
+    private HotelRoomResponse(Long hotelRoomId, String roomNumber, HotelRoomType hotelRoomType,
+        BigDecimal originalPrice) {
         this.hotelRoomId = hotelRoomId;
         this.roomNumber = roomNumber;
         this.hotelRoomType = hotelRoomType;
@@ -43,7 +44,8 @@ public class HotelRoomResponse {
         this.resrvations = new ArrayList<>();
     }
 
-    public static HotelRoomResponse of (Long hotelRoomId, String roomNumber, HotelRoomType hotelRoomType, BigDecimal originalPrice) {
+    public static HotelRoomResponse of(Long hotelRoomId, String roomNumber, HotelRoomType hotelRoomType,
+        BigDecimal originalPrice) {
         return new HotelRoomResponse(hotelRoomId, roomNumber, hotelRoomType, originalPrice);
     }
 

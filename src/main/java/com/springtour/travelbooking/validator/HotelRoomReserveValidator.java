@@ -2,8 +2,6 @@ package com.springtour.travelbooking.validator;
 
 import com.springtour.travelbooking.dto.HotelRoomReserveRequest;
 import java.util.Objects;
-import java.util.Set;
-import javax.validation.ConstraintViolation;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -21,7 +19,7 @@ public class HotelRoomReserveValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        HotelRoomReserveRequest request = HotelRoomReserveRequest.class.cast(target);
+        HotelRoomReserveRequest request = (HotelRoomReserveRequest) target;
 
         if (Objects.isNull(request.getCheckInDate())) {
             errors.rejectValue("checkInDate", "NotNull", "checkInDate is null");

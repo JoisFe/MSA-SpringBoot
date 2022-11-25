@@ -2,7 +2,6 @@ package com.springtour.travelbooking.dto;
 
 import com.springtour.travelbooking.domain.HotelRoomType;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import lombok.Getter;

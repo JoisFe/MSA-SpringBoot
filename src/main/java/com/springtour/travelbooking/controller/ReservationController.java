@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ReservationController {
 
     @GetMapping("/hotels/{hotelId}/rooms/{roomNumber}/reservations")
-    public List<Long> getReservationsByPaging(@PathVariable Long hotelId, @PathVariable String roomNumber, Pageable pageable) {
+    public List<Long> getReservationsByPaging(@PathVariable Long hotelId, @PathVariable String roomNumber,
+        Pageable pageable) {
         System.out.println("Page param : " + pageable.getPageNumber());
         System.out.println("Size param : " + pageable.getPageSize());
 

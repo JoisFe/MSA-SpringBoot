@@ -36,7 +36,8 @@ public class HotelRoomReserveController {
     public ResponseEntity<HotelRoomIdResponse> reserveHotelRoomByRoomNumber(@PathVariable Long hotelId,
         @PathVariable String roomNumber, @Valid @RequestBody
         HotelRoomReserveRequest reserveRequest, BindingResult bindingResult) {
-        Long reservationId = reserveService.reserveHotelRoom(hotelId, roomNumber, reserveRequest.getCheckInDate(), reserveRequest.getCheckOutDate());
+        Long reservationId = reserveService.reserveHotelRoom(hotelId, roomNumber, reserveRequest.getCheckInDate(),
+            reserveRequest.getCheckOutDate());
 
         HotelRoomIdResponse body = HotelRoomIdResponse.from(reservationId);
 
