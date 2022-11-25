@@ -12,11 +12,14 @@ import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+import javax.validation.Valid;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -75,8 +78,25 @@ public class HotelRoomController {
     }
 
     @PutMapping(path = "/hotels/{hotelId}/rooms/{roomNumber}")
-    public ResponseEntity<HotelRoomIdResponse> updateHotelRoomByRoomNumber(@PathVariable Long hotelId, @PathVariable String roomNumber, HotelRoomUpdateRequest hotelRoomUpdateRequest) {
-        System.out.println(hotelRoomUpdateRequest.toString());;
+    public ResponseEntity<HotelRoomIdResponse> updateHotelRoomByRoomNumber(@PathVariable Long hotelId,
+        @PathVariable String roomNumber, @Valid @RequestBody HotelRoomUpdateRequest hotelRoomUpdateRequest,
+        BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            FieldError fieldError = bindingResult.getFieldError();
+
+            String errorMessage = new StringBuilder("validation error.")
+                .append(" field : ").append(fieldError.getField())
+                .append(", code : ").append(fieldError.getCode())
+                .append(", message : ").append(fieldError.getDefaultMessage())
+                .toString();
+
+            System.out.println(errorMessage);
+
+            return ResponseEntity.badRequest().build();
+        }
+
+        System.out.println(hotelRoomUpdateRequest.toString());
 
         HotelRoomIdResponse body = HotelRoomIdResponse.from(1_002_003_004L);
 

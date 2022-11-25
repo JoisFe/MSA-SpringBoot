@@ -1,6 +1,10 @@
 package com.springtour.travelbooking.dto;
 
+import com.springtour.travelbooking.domain.HotelRoomType;
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -12,9 +16,10 @@ import lombok.ToString;
 @ToString
 public class HotelRoomUpdateRequest {
 
-    private LocalDate checkInDate;
+    @NotNull(message = "roomType can't be null")
+    private HotelRoomType hotelRoomType;
 
-    private LocalDate checkOutDate;
-
-    private String name;
+    @NotNull(message = "originalPrice can't be null")
+    @Min(value = 0, message = "originalPrice must be larger than 0")
+    private BigDecimal originalPrice;
 }
