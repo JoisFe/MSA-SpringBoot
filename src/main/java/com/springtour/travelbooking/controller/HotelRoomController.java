@@ -5,6 +5,7 @@ import com.springtour.travelbooking.dto.DeleteResultResponse;
 import com.springtour.travelbooking.dto.HotelRoomIdResponse;
 import com.springtour.travelbooking.dto.HotelRoomRequest;
 import com.springtour.travelbooking.dto.HotelRoomResponse;
+import com.springtour.travelbooking.dto.HotelRoomUpdateRequest;
 import com.springtour.travelbooking.utils.IdGenerator;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -70,5 +72,14 @@ public class HotelRoomController {
         HotelRoomIdResponse body = HotelRoomIdResponse.from(1_002_003_004L);
 
         return new ResponseEntity<>(body, headers, HttpStatus.OK);
+    }
+
+    @PutMapping(path = "/hotels/{hotelId}/rooms/{roomNumber}")
+    public ResponseEntity<HotelRoomIdResponse> updateHotelRoomByRoomNumber(@PathVariable Long hotelId, @PathVariable String roomNumber, HotelRoomUpdateRequest hotelRoomUpdateRequest) {
+        System.out.println(hotelRoomUpdateRequest.toString());;
+
+        HotelRoomIdResponse body = HotelRoomIdResponse.from(1_002_003_004L);
+
+        return ResponseEntity.ok(body);
     }
 }
