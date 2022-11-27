@@ -2,6 +2,7 @@ package com.springtour.travelbooking.controller;
 
 import com.springtour.travelbooking.dto.ErrorResponse;
 import com.springtour.travelbooking.exception.BadRequestException;
+import com.springtour.travelbooking.exception.FileDownloadException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,6 +23,11 @@ public class ApiExceptoinHandler {
             new ErrorResponse(ex.getErrorMessage()),
             HttpStatus.BAD_REQUEST
         );
+    }
+
+    @ExceptionHandler(FileDownloadException.class)
+    public ResponseEntity handleFileDownloadException(FileDownloadException e) {
+        return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(Exception.class)
