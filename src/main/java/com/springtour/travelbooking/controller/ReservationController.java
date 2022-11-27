@@ -2,11 +2,14 @@ package com.springtour.travelbooking.controller;
 
 import com.springtour.travelbooking.exception.FileDownloadException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Collections;
 import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +45,24 @@ public class ReservationController {
             byte[] bytes = StreamUtils.copyToByteArray(inputStream);
 
             return new ResponseEntity<>(bytes, HttpStatus.OK);
+        } catch (Throwable th) {
+            th.printStackTrace();
+
+            throw new FileDownloadException("file download error");
+        }
+    }
+
+    @GetMapping(value = "/hotels/{hotelId}/rooms/{roomNumber}/reservations/{reservationId}", produces = "application/pdf")
+    public void downloadInvoice(@PathVariable Long hotelId, @PathVariable String roomNumber, @PathVariable Long reservationId, HttpServletResponse response) {
+        String filePath = "pdf/hotel_invoice.pdf";
+
+        try (InputStream is = new ClassPathResource(filePath).getInputStream();
+            OutputStream os = response.getOutputStream();) {
+            response.setStatus(HttpStatus.OK.value());
+            response.setContentType(MediaType.APPLICATION_PDF_VALUE);
+            response.setHeader("Content-Disposition", "filename=hotel_invoice.pdf");
+
+            StreamUtils.copy(is, os);
         } catch (Throwable th) {
             th.printStackTrace();
 
