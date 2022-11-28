@@ -7,6 +7,7 @@ import com.springtour.travelbooking.dto.HotelRoomRequest;
 import com.springtour.travelbooking.dto.HotelRoomResponse;
 import com.springtour.travelbooking.dto.HotelRoomUpdateRequest;
 import com.springtour.travelbooking.utils.IdGenerator;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
